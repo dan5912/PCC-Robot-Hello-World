@@ -15,13 +15,13 @@
 
     #include <xc.h>                         //PIC hardware mapping
 
-    #define RS PORTAbits.RA0
-    #define RW PORTAbits.RA1
-    #define EN PORTAbits.RA2
-    #define D7 PORTCbits.RC3
-    #define D6 PORTCbits.RC2
-    #define D5 PORTCbits.RC1
-    #define D4 PORTCbits.RC0
+    #define RS PORTAbits.RD4
+    #define RW PORTAbits.RD5
+    #define EN PORTAbits.RD6
+    #define D7 PORTCbits.RC4
+    #define D6 PORTCbits.RC5
+    #define D5 PORTCbits.RC6
+    #define D4 PORTCbits.RC7
 
     #define D7DIR TRISCbits.TRISC3
 
