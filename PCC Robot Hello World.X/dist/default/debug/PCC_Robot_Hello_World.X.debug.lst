@@ -1,0 +1,1512 @@
+
+
+Microchip Technology PIC18 LITE Macro Assembler V1.36 build -262312587 
+                                                                                               Sat Apr 16 15:04:02 2016
+
+Microchip Technology Omniscient Code Generator v1.36 (Free mode) build 201601150325
+     1                           	processor	18F46K22
+     2                           	fnconf	rparam,??,?,0
+     3                           	opt	pw 120
+     4                           	opt	lm
+     5                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     6                           	psect	bssCOMRAM,global,class=COMRAM,space=1,delta=1
+     7                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1
+     8                           	psect	text0,global,reloc=2,class=CODE,delta=1
+     9                           	psect	text1,global,reloc=2,class=CODE,delta=1
+    10                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    11                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    12                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    13                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    14                           	psect	text6,global,reloc=2,class=CODE,delta=1
+    15                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1
+    16                           	psect	rparam,global,class=COMRAM,space=1,delta=1
+    17  0000                     _ANSELC	set	3898
+    18  0000                     _ANSELD	set	3899
+    19  0000                     _PORTC	set	3970
+    20  0000                     _PORTCbits	set	3970
+    21  0000                     _PORTD	set	3971
+    22  0000                     _PORTDbits	set	3971
+    23  0000                     _TRISC	set	3988
+    24  0000                     _TRISCbits	set	3988
+    25  0000                     _TRISD	set	3989
+    26                           
+    27                           ; #config settings
+    28  0000                     
+    29                           	psect	cinit
+    30  00FB94                     __pcinit:
+    31                           	opt stack 0
+    32  00FB94                     start_initialization:
+    33                           	opt stack 0
+    34  00FB94                     __initialization:
+    35                           	opt stack 0
+    36                           
+    37                           ; Clear objects allocated to COMRAM (2 bytes)
+    38  00FB94  6A0B               	clrf	(__pbssCOMRAM+1)& (0+255),c
+    39  00FB96  6A0A               	clrf	__pbssCOMRAM& (0+255),c
+    40  00FB98                     end_of_initialization:
+    41                           	opt stack 0
+    42  00FB98                     __end_of__initialization:
+    43                           	opt stack 0
+    44  00FB98  0100               	movlb	0
+    45  00FB9A  EF03  F07E         	goto	_main	;jump to C main() function
+    46                           
+    47                           	psect	bssCOMRAM
+    48  00000A                     __pbssCOMRAM:
+    49                           	opt stack 0
+    50  00000A                     _LCD4_disp_height:
+    51                           	opt stack 0
+    52  00000A                     	ds	1
+    53  00000B                     _LCD4_disp_width:
+    54                           	opt stack 0
+    55  00000B                     	ds	1
+    56                           
+    57                           	psect	cstackCOMRAM
+    58  000001                     __pcstackCOMRAM:
+    59                           	opt stack 0
+    60  000001                     ??_lcd4SendCommand:
+    61  000001                     lcd4WaitBusy@r:
+    62                           	opt stack 0
+    63                           
+    64                           ; 2 bytes @ 0x0
+    65  000001                     	ds	2
+    66  000003                     ??_lcd4SendChar:
+    67  000003                     lcd4SendCommand@data:
+    68                           	opt stack 0
+    69                           
+    70                           ; 1 bytes @ 0x2
+    71  000003                     	ds	1
+    72  000004                     lcd4Init@y:
+    73                           	opt stack 0
+    74  000004                     lcd4SetCursor@y:
+    75                           	opt stack 0
+    76                           
+    77                           ; 1 bytes @ 0x3
+    78  000004                     	ds	1
+    79  000005                     ??_lcd4Init:
+    80  000005                     lcd4SendChar@data:
+    81                           	opt stack 0
+    82  000005                     lcd4SetCursor@shiftDistance:
+    83                           	opt stack 0
+    84                           
+    85                           ; 1 bytes @ 0x4
+    86  000005                     	ds	1
+    87  000006                     lcd4SetCursor@x:
+    88                           	opt stack 0
+    89                           
+    90                           ; 1 bytes @ 0x5
+    91  000006                     	ds	1
+    92  000007                     lcd4Init@x:
+    93                           	opt stack 0
+    94                           
+    95                           ; 1 bytes @ 0x6
+    96  000007                     	ds	1
+    97  000008                     lcd4Init@data:
+    98                           	opt stack 0
+    99                           
+   100                           ; 1 bytes @ 0x7
+   101  000008                     	ds	1
+   102  000009                     ??_main:
+   103                           
+   104                           ; 1 bytes @ 0x8
+   105  000009                     	ds	1
+   106                           
+   107 ;;
+   108 ;;Main: autosize = 0, tempsize = 1, incstack = 0, save=0
+   109 ;;
+   110 ;; *************** function _main *****************
+   111 ;; Defined at:
+   112 ;;		line 74 in file "main.c"
+   113 ;; Parameters:    Size  Location     Type
+   114 ;;		None
+   115 ;; Auto vars:     Size  Location     Type
+   116 ;;		None
+   117 ;; Return value:  Size  Location     Type
+   118 ;;                  1    wreg      void 
+   119 ;; Registers used:
+   120 ;;		wreg, status,2, status,0, prodl, prodh, cstack
+   121 ;; Tracked objects:
+   122 ;;		On entry : 0/0
+   123 ;;		On exit  : 0/0
+   124 ;;		Unchanged: 0/0
+   125 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   126 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   127 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   128 ;;      Temps:          1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   129 ;;      Totals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   130 ;;Total ram usage:        1 bytes
+   131 ;; Hardware stack levels required when called:    2
+   132 ;; This function calls:
+   133 ;;		_lcd4Clear
+   134 ;;		_lcd4Init
+   135 ;;		_lcd4SendChar
+   136 ;;		_lcd4SetCursor
+   137 ;; This function is called by:
+   138 ;;		Startup code after reset
+   139 ;; This function uses a non-reentrant model
+   140 ;;
+   141                           
+   142                           	psect	text0
+   143  00FC06                     __ptext0:
+   144                           	opt stack 0
+   145  00FC06                     _main:
+   146                           	opt stack 29
+   147                           
+   148                           ;main.c: 76: TRISC = 0;
+   149                           
+   150                           ;incstack = 0
+   151  00FC06  0E00               	movlw	0
+   152  00FC08  6E94               	movwf	3988,c	;volatile
+   153                           
+   154                           ;main.c: 77: TRISD = 0;
+   155  00FC0A  0E00               	movlw	0
+   156  00FC0C  6E95               	movwf	3989,c	;volatile
+   157                           
+   158                           ;main.c: 78: ANSELC = 0;
+   159  00FC0E  0E00               	movlw	0
+   160  00FC10  010F               	movlb	15	; () banked
+   161  00FC12  6F3A               	movwf	58,b	;volatile
+   162                           
+   163                           ;main.c: 79: ANSELD = 0;
+   164  00FC14  0E00               	movlw	0
+   165  00FC16  010F               	movlb	15	; () banked
+   166  00FC18  6F3B               	movwf	59,b	;volatile
+   167                           
+   168                           ;main.c: 80: PORTD = 0;
+   169  00FC1A  0E00               	movlw	0
+   170  00FC1C  6E83               	movwf	3971,c	;volatile
+   171                           
+   172                           ;main.c: 81: PORTC = 0;
+   173  00FC1E  0E00               	movlw	0
+   174  00FC20  6E82               	movwf	3970,c	;volatile
+   175                           
+   176                           ; BSR set to: 15
+   177                           ;main.c: 89: _delay((unsigned long)((100)*(500000/4000.0)));
+   178  00FC22  0E11               	movlw	17
+   179  00FC24  6E09               	movwf	??_main& (0+255),c
+   180  00FC26  0E3A               	movlw	58
+   181  00FC28                     u277:
+   182  00FC28  2EE8               	decfsz	wreg,f,c
+   183  00FC2A  D7FE               	goto	u277
+   184  00FC2C  2E09               	decfsz	??_main& (0+255),f,c
+   185  00FC2E  D7FC               	goto	u277
+   186  00FC30  D000               	nop2	
+   187                           
+   188                           ;main.c: 90: lcd4Init(16, 2);
+   189  00FC32  0E02               	movlw	2
+   190  00FC34  6E04               	movwf	lcd4Init@y,c
+   191  00FC36  0E10               	movlw	16
+   192  00FC38  EC2E  F07F         	call	_lcd4Init
+   193                           
+   194                           ;main.c: 91: _delay((unsigned long)((100)*(500000/4000.0)));
+   195  00FC3C  0E11               	movlw	17
+   196  00FC3E  6E09               	movwf	??_main& (0+255),c
+   197  00FC40  0E3A               	movlw	58
+   198  00FC42                     u287:
+   199  00FC42  2EE8               	decfsz	wreg,f,c
+   200  00FC44  D7FE               	goto	u287
+   201  00FC46  2E09               	decfsz	??_main& (0+255),f,c
+   202  00FC48  D7FC               	goto	u287
+   203  00FC4A  D000               	nop2	
+   204                           
+   205                           ;main.c: 92: lcd4SendChar('A');
+   206  00FC4C  0E41               	movlw	65
+   207  00FC4E  ECAE  F07E         	call	_lcd4SendChar
+   208                           
+   209                           ;main.c: 93: lcd4Clear();
+   210  00FC52  ECCF  F07D         	call	_lcd4Clear	;wreg free
+   211                           
+   212                           ;main.c: 94: lcd4SetCursor(0,1);
+   213  00FC56  0E01               	movlw	1
+   214  00FC58  6E04               	movwf	lcd4SetCursor@y,c
+   215  00FC5A  0E00               	movlw	0
+   216  00FC5C  ECD5  F07D         	call	_lcd4SetCursor
+   217  00FC60                     l25:
+   218                           
+   219                           ;main.c: 96: {
+   220  00FC60  D7FF               	goto	l25
+   221  00FC62                     __end_of_main:
+   222                           	opt stack 0
+   223                           wreg	equ	0xFE8
+   224                           
+   225 ;; *************** function _lcd4SetCursor *****************
+   226 ;; Defined at:
+   227 ;;		line 216 in file "lcd.c"
+   228 ;; Parameters:    Size  Location     Type
+   229 ;;  x               1    wreg     unsigned char 
+   230 ;;  y               1    3[COMRAM] unsigned char 
+   231 ;; Auto vars:     Size  Location     Type
+   232 ;;  x               1    5[COMRAM] unsigned char 
+   233 ;;  shiftDistanc    1    4[COMRAM] unsigned char 
+   234 ;; Return value:  Size  Location     Type
+   235 ;;                  1    wreg      void 
+   236 ;; Registers used:
+   237 ;;		wreg, status,2, status,0, prodl, prodh, cstack
+   238 ;; Tracked objects:
+   239 ;;		On entry : 0/0
+   240 ;;		On exit  : 0/0
+   241 ;;		Unchanged: 0/0
+   242 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   243 ;;      Params:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   244 ;;      Locals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   245 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   246 ;;      Totals:         3       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   247 ;;Total ram usage:        3 bytes
+   248 ;; Hardware stack levels used:    1
+   249 ;; Hardware stack levels required when called:    1
+   250 ;; This function calls:
+   251 ;;		_lcd4SendCommand
+   252 ;;		_lcd4WaitBusy
+   253 ;; This function is called by:
+   254 ;;		_main
+   255 ;; This function uses a non-reentrant model
+   256 ;;
+   257                           
+   258                           	psect	text1
+   259  00FBAA                     __ptext1:
+   260                           	opt stack 0
+   261  00FBAA                     _lcd4SetCursor:
+   262                           	opt stack 29
+   263                           
+   264                           ;incstack = 0
+   265                           ;lcd4SetCursor@x stored from wreg
+   266  00FBAA  6E06               	movwf	lcd4SetCursor@x,c
+   267                           
+   268                           ;lcd.c: 218: if(x < LCD4_disp_width && y < LCD4_disp_height){
+   269  00FBAC  500B               	movf	_LCD4_disp_width,w,c
+   270  00FBAE  5C06               	subwf	lcd4SetCursor@x,w,c
+   271  00FBB0  B0D8               	btfsc	status,0,c
+   272  00FBB2  0012               	return	
+   273  00FBB4  500A               	movf	_LCD4_disp_height,w,c
+   274  00FBB6  5C04               	subwf	lcd4SetCursor@y,w,c
+   275  00FBB8  B0D8               	btfsc	status,0,c
+   276  00FBBA  0012               	return	
+   277                           
+   278                           ;lcd.c: 219: unsigned char shiftDistance = x + y*40;
+   279  00FBBC  5004               	movf	lcd4SetCursor@y,w,c
+   280  00FBBE  0D28               	mullw	40
+   281  00FBC0  50F3               	movf	prodl,w,c
+   282  00FBC2  2406               	addwf	lcd4SetCursor@x,w,c
+   283  00FBC4  6E05               	movwf	lcd4SetCursor@shiftDistance,c
+   284                           
+   285                           ;lcd.c: 220: lcd4WaitBusy();
+   286  00FBC6  ECEA  F07D         	call	_lcd4WaitBusy	;wreg free
+   287                           
+   288                           ;lcd.c: 221: lcd4SendCommand(0x80 | (shiftDistance));
+   289  00FBCA  5005               	movf	lcd4SetCursor@shiftDistance,w,c
+   290  00FBCC  0980               	iorlw	128
+   291  00FBCE  EC31  F07E         	call	_lcd4SendCommand
+   292  00FBD2  0012               	return	
+   293  00FBD4                     __end_of_lcd4SetCursor:
+   294                           	opt stack 0
+   295                           prodl	equ	0xFF3
+   296                           wreg	equ	0xFE8
+   297                           status	equ	0xFD8
+   298                           
+   299 ;; *************** function _lcd4SendChar *****************
+   300 ;; Defined at:
+   301 ;;		line 170 in file "lcd.c"
+   302 ;; Parameters:    Size  Location     Type
+   303 ;;  data            1    wreg     unsigned char 
+   304 ;; Auto vars:     Size  Location     Type
+   305 ;;  data            1    4[COMRAM] unsigned char 
+   306 ;; Return value:  Size  Location     Type
+   307 ;;                  1    wreg      void 
+   308 ;; Registers used:
+   309 ;;		wreg, status,2, status,0, cstack
+   310 ;; Tracked objects:
+   311 ;;		On entry : 0/0
+   312 ;;		On exit  : 0/0
+   313 ;;		Unchanged: 0/0
+   314 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   315 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   316 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   317 ;;      Temps:          2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   318 ;;      Totals:         3       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   319 ;;Total ram usage:        3 bytes
+   320 ;; Hardware stack levels used:    1
+   321 ;; Hardware stack levels required when called:    1
+   322 ;; This function calls:
+   323 ;;		_lcd4WaitBusy
+   324 ;; This function is called by:
+   325 ;;		_main
+   326 ;;		_lcd4WriteString
+   327 ;; This function uses a non-reentrant model
+   328 ;;
+   329                           
+   330                           	psect	text2
+   331  00FD5C                     __ptext2:
+   332                           	opt stack 0
+   333  00FD5C                     _lcd4SendChar:
+   334                           	opt stack 29
+   335                           
+   336                           ;incstack = 0
+   337                           ;lcd4SendChar@data stored from wreg
+   338  00FD5C  6E05               	movwf	lcd4SendChar@data,c
+   339                           
+   340                           ;lcd.c: 173: lcd4WaitBusy();
+   341  00FD5E  ECEA  F07D         	call	_lcd4WaitBusy	;wreg free
+   342                           
+   343                           ;lcd.c: 174: PORTDbits.RD4 = 1;
+   344  00FD62  8883               	bsf	3971,4,c	;volatile
+   345                           
+   346                           ;lcd.c: 175: PORTDbits.RD5 = 0;
+   347  00FD64  9A83               	bcf	3971,5,c	;volatile
+   348                           
+   349                           ;lcd.c: 177: PORTCbits.RC4 = (data>>7)& 0x01;
+   350  00FD66  6A03               	clrf	??_lcd4SendChar& (0+255),c
+   351  00FD68  AE05               	btfss	lcd4SendChar@data,7,c
+   352  00FD6A  D001               	bra	u125
+   353  00FD6C  2A03               	incf	??_lcd4SendChar& (0+255),f,c
+   354  00FD6E                     u125:
+   355  00FD6E  0E01               	movlw	1
+   356  00FD70  1603               	andwf	??_lcd4SendChar,f,c
+   357  00FD72  3A03               	swapf	??_lcd4SendChar,f,c
+   358  00FD74  5082               	movf	3970,w,c	;volatile
+   359  00FD76  1803               	xorwf	??_lcd4SendChar,w,c
+   360  00FD78  0BEF               	andlw	-17
+   361  00FD7A  1803               	xorwf	??_lcd4SendChar,w,c
+   362  00FD7C  6E82               	movwf	3970,c	;volatile
+   363                           
+   364                           ;lcd.c: 178: PORTCbits.RC5 = (data>>6)& 0x01;
+   365  00FD7E  C005  F003         	movff	lcd4SendChar@data,??_lcd4SendChar
+   366  00FD82  0E06               	movlw	6
+   367  00FD84  6E04               	movwf	(??_lcd4SendChar+1)& (0+255),c
+   368  00FD86                     u135:
+   369  00FD86  90D8               	bcf	status,0,c
+   370  00FD88  3203               	rrcf	??_lcd4SendChar,f,c
+   371  00FD8A  2E04               	decfsz	(??_lcd4SendChar+1)& (0+255),f,c
+   372  00FD8C  D7FC               	goto	u135
+   373  00FD8E  0E01               	movlw	1
+   374  00FD90  1603               	andwf	??_lcd4SendChar,f,c
+   375  00FD92  3A03               	swapf	??_lcd4SendChar,f,c
+   376  00FD94  4603               	rlncf	??_lcd4SendChar,f,c
+   377  00FD96  5082               	movf	3970,w,c	;volatile
+   378  00FD98  1803               	xorwf	??_lcd4SendChar,w,c
+   379  00FD9A  0BDF               	andlw	-33
+   380  00FD9C  1803               	xorwf	??_lcd4SendChar,w,c
+   381  00FD9E  6E82               	movwf	3970,c	;volatile
+   382                           
+   383                           ;lcd.c: 179: PORTCbits.RC6 = (data>>5)& 0x01;
+   384  00FDA0  C005  F003         	movff	lcd4SendChar@data,??_lcd4SendChar
+   385  00FDA4  0E05               	movlw	5
+   386  00FDA6  6E04               	movwf	(??_lcd4SendChar+1)& (0+255),c
+   387  00FDA8                     u145:
+   388  00FDA8  90D8               	bcf	status,0,c
+   389  00FDAA  3203               	rrcf	??_lcd4SendChar,f,c
+   390  00FDAC  2E04               	decfsz	(??_lcd4SendChar+1)& (0+255),f,c
+   391  00FDAE  D7FC               	goto	u145
+   392  00FDB0  0E01               	movlw	1
+   393  00FDB2  1603               	andwf	??_lcd4SendChar,f,c
+   394  00FDB4  3A03               	swapf	??_lcd4SendChar,f,c
+   395  00FDB6  4603               	rlncf	??_lcd4SendChar,f,c
+   396  00FDB8  4603               	rlncf	??_lcd4SendChar,f,c
+   397  00FDBA  5082               	movf	3970,w,c	;volatile
+   398  00FDBC  1803               	xorwf	??_lcd4SendChar,w,c
+   399  00FDBE  0BBF               	andlw	-65
+   400  00FDC0  1803               	xorwf	??_lcd4SendChar,w,c
+   401  00FDC2  6E82               	movwf	3970,c	;volatile
+   402                           
+   403                           ;lcd.c: 180: PORTCbits.RC7 = (data>>4)& 0x01;
+   404  00FDC4  C005  F003         	movff	lcd4SendChar@data,??_lcd4SendChar
+   405  00FDC8  3A03               	swapf	??_lcd4SendChar,f,c
+   406  00FDCA  0E0F               	movlw	15
+   407  00FDCC  1603               	andwf	??_lcd4SendChar,f,c
+   408  00FDCE  0E01               	movlw	1
+   409  00FDD0  1603               	andwf	??_lcd4SendChar,f,c
+   410  00FDD2  3203               	rrcf	??_lcd4SendChar,f,c
+   411  00FDD4  3203               	rrcf	??_lcd4SendChar,f,c
+   412  00FDD6  5082               	movf	3970,w,c	;volatile
+   413  00FDD8  1803               	xorwf	??_lcd4SendChar,w,c
+   414  00FDDA  0B7F               	andlw	-129
+   415  00FDDC  1803               	xorwf	??_lcd4SendChar,w,c
+   416  00FDDE  6E82               	movwf	3970,c	;volatile
+   417                           
+   418                           ;lcd.c: 181: PORTDbits.RD6 = 1;
+   419  00FDE0  8C83               	bsf	3971,6,c	;volatile
+   420                           
+   421                           ;lcd.c: 183: PORTDbits.RD6 = 0;
+   422                           
+   423                           ;lcd.c: 182: _delay((unsigned long)((5)*(500000/4000000.0)));
+   424  00FDE2  9C83               	bcf	3971,6,c	;volatile
+   425                           
+   426                           ;lcd.c: 187: PORTCbits.RC4 = (data>>3)& 0x01;
+   427                           
+   428                           ;lcd.c: 184: _delay((unsigned long)((5)*(500000/4000000.0)));
+   429  00FDE4  C005  F003         	movff	lcd4SendChar@data,??_lcd4SendChar
+   430  00FDE8  90D8               	bcf	status,0,c
+   431  00FDEA  3203               	rrcf	??_lcd4SendChar,f,c
+   432  00FDEC  90D8               	bcf	status,0,c
+   433  00FDEE  3203               	rrcf	??_lcd4SendChar,f,c
+   434  00FDF0  90D8               	bcf	status,0,c
+   435  00FDF2  3203               	rrcf	??_lcd4SendChar,f,c
+   436  00FDF4  0E01               	movlw	1
+   437  00FDF6  1603               	andwf	??_lcd4SendChar,f,c
+   438  00FDF8  3A03               	swapf	??_lcd4SendChar,f,c
+   439  00FDFA  5082               	movf	3970,w,c	;volatile
+   440  00FDFC  1803               	xorwf	??_lcd4SendChar,w,c
+   441  00FDFE  0BEF               	andlw	-17
+   442  00FE00  1803               	xorwf	??_lcd4SendChar,w,c
+   443  00FE02  6E82               	movwf	3970,c	;volatile
+   444                           
+   445                           ;lcd.c: 188: PORTCbits.RC5 = (data>>2)& 0x01;
+   446  00FE04  C005  F003         	movff	lcd4SendChar@data,??_lcd4SendChar
+   447  00FE08  90D8               	bcf	status,0,c
+   448  00FE0A  3203               	rrcf	??_lcd4SendChar,f,c
+   449  00FE0C  90D8               	bcf	status,0,c
+   450  00FE0E  3203               	rrcf	??_lcd4SendChar,f,c
+   451  00FE10  0E01               	movlw	1
+   452  00FE12  1603               	andwf	??_lcd4SendChar,f,c
+   453  00FE14  3A03               	swapf	??_lcd4SendChar,f,c
+   454  00FE16  4603               	rlncf	??_lcd4SendChar,f,c
+   455  00FE18  5082               	movf	3970,w,c	;volatile
+   456  00FE1A  1803               	xorwf	??_lcd4SendChar,w,c
+   457  00FE1C  0BDF               	andlw	-33
+   458  00FE1E  1803               	xorwf	??_lcd4SendChar,w,c
+   459  00FE20  6E82               	movwf	3970,c	;volatile
+   460                           
+   461                           ;lcd.c: 189: PORTCbits.RC6 = (data>>1)& 0x01;
+   462  00FE22  C005  F003         	movff	lcd4SendChar@data,??_lcd4SendChar
+   463  00FE26  90D8               	bcf	status,0,c
+   464  00FE28  3203               	rrcf	??_lcd4SendChar,f,c
+   465  00FE2A  0E01               	movlw	1
+   466  00FE2C  1603               	andwf	??_lcd4SendChar,f,c
+   467  00FE2E  3A03               	swapf	??_lcd4SendChar,f,c
+   468  00FE30  4603               	rlncf	??_lcd4SendChar,f,c
+   469  00FE32  4603               	rlncf	??_lcd4SendChar,f,c
+   470  00FE34  5082               	movf	3970,w,c	;volatile
+   471  00FE36  1803               	xorwf	??_lcd4SendChar,w,c
+   472  00FE38  0BBF               	andlw	-65
+   473  00FE3A  1803               	xorwf	??_lcd4SendChar,w,c
+   474  00FE3C  6E82               	movwf	3970,c	;volatile
+   475                           
+   476                           ;lcd.c: 190: PORTCbits.RC7 = (data>>0)& 0x01;
+   477  00FE3E  C005  F003         	movff	lcd4SendChar@data,??_lcd4SendChar
+   478  00FE42  0E01               	movlw	1
+   479  00FE44  1603               	andwf	??_lcd4SendChar,f,c
+   480  00FE46  3203               	rrcf	??_lcd4SendChar,f,c
+   481  00FE48  3203               	rrcf	??_lcd4SendChar,f,c
+   482  00FE4A  5082               	movf	3970,w,c	;volatile
+   483  00FE4C  1803               	xorwf	??_lcd4SendChar,w,c
+   484  00FE4E  0B7F               	andlw	-129
+   485  00FE50  1803               	xorwf	??_lcd4SendChar,w,c
+   486  00FE52  6E82               	movwf	3970,c	;volatile
+   487                           
+   488                           ;lcd.c: 191: PORTDbits.RD6 = 1;
+   489  00FE54  8C83               	bsf	3971,6,c	;volatile
+   490                           
+   491                           ;lcd.c: 193: PORTDbits.RD6 = 0;
+   492                           
+   493                           ;lcd.c: 192: _delay((unsigned long)((5)*(500000/4000000.0)));
+   494  00FE56  9C83               	bcf	3971,6,c	;volatile
+   495                           
+   496                           ;lcd.c: 194: PORTDbits.RD5 = 1;
+   497  00FE58  8A83               	bsf	3971,5,c	;volatile
+   498                           
+   499                           ;lcd.c: 195: _delay((unsigned long)((5)*(500000/4000000.0)));
+   500  00FE5A  0012               	return		;funcret
+   501  00FE5C                     __end_of_lcd4SendChar:
+   502                           	opt stack 0
+   503                           prodl	equ	0xFF3
+   504                           wreg	equ	0xFE8
+   505                           status	equ	0xFD8
+   506                           
+   507 ;; *************** function _lcd4Init *****************
+   508 ;; Defined at:
+   509 ;;		line 110 in file "lcd.c"
+   510 ;; Parameters:    Size  Location     Type
+   511 ;;  x               1    wreg     unsigned char 
+   512 ;;  y               1    3[COMRAM] unsigned char 
+   513 ;; Auto vars:     Size  Location     Type
+   514 ;;  x               1    6[COMRAM] unsigned char 
+   515 ;;  data            1    7[COMRAM] unsigned char 
+   516 ;; Return value:  Size  Location     Type
+   517 ;;                  1    wreg      void 
+   518 ;; Registers used:
+   519 ;;		wreg, status,2, status,0, cstack
+   520 ;; Tracked objects:
+   521 ;;		On entry : 0/0
+   522 ;;		On exit  : 0/0
+   523 ;;		Unchanged: 0/0
+   524 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   525 ;;      Params:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   526 ;;      Locals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   527 ;;      Temps:          2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   528 ;;      Totals:         5       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   529 ;;Total ram usage:        5 bytes
+   530 ;; Hardware stack levels used:    1
+   531 ;; Hardware stack levels required when called:    1
+   532 ;; This function calls:
+   533 ;;		_lcd4SendCommand
+   534 ;;		_lcd4WaitBusy
+   535 ;; This function is called by:
+   536 ;;		_main
+   537 ;; This function uses a non-reentrant model
+   538 ;;
+   539                           
+   540                           	psect	text3
+   541  00FE5C                     __ptext3:
+   542                           	opt stack 0
+   543  00FE5C                     _lcd4Init:
+   544                           	opt stack 29
+   545                           
+   546                           ;incstack = 0
+   547                           ;lcd4Init@x stored from wreg
+   548  00FE5C  6E07               	movwf	lcd4Init@x,c
+   549                           
+   550                           ;lcd.c: 112: LCD4_disp_height = y;
+   551  00FE5E  C004  F00A         	movff	lcd4Init@y,_LCD4_disp_height
+   552                           
+   553                           ;lcd.c: 113: LCD4_disp_width = x;
+   554  00FE62  C007  F00B         	movff	lcd4Init@x,_LCD4_disp_width
+   555                           
+   556                           ;lcd.c: 115: _delay((unsigned long)((100)*(500000/4000.0)));
+   557  00FE66  0E11               	movlw	17
+   558  00FE68  6E05               	movwf	??_lcd4Init& (0+255),c
+   559  00FE6A  0E3A               	movlw	58
+   560  00FE6C                     u297:
+   561  00FE6C  2EE8               	decfsz	wreg,f,c
+   562  00FE6E  D7FE               	goto	u297
+   563  00FE70  2E05               	decfsz	??_lcd4Init& (0+255),f,c
+   564  00FE72  D7FC               	goto	u297
+   565  00FE74  D000               	nop2	
+   566                           
+   567                           ;lcd.c: 117: PORTDbits.RD6 = 1;
+   568  00FE76  8C83               	bsf	3971,6,c	;volatile
+   569                           
+   570                           ;lcd.c: 118: PORTDbits.RD4 = 0;
+   571  00FE78  9883               	bcf	3971,4,c	;volatile
+   572                           
+   573                           ;lcd.c: 119: PORTDbits.RD5 = 0;
+   574  00FE7A  9A83               	bcf	3971,5,c	;volatile
+   575                           
+   576                           ;lcd.c: 120: unsigned char data = 0x30;
+   577  00FE7C  0E30               	movlw	48
+   578  00FE7E  6E08               	movwf	lcd4Init@data,c
+   579                           
+   580                           ;lcd.c: 121: PORTCbits.RC4 = (data>>7)& 0x01;
+   581  00FE80  6A05               	clrf	??_lcd4Init& (0+255),c
+   582  00FE82  AE08               	btfss	lcd4Init@data,7,c
+   583  00FE84  D001               	bra	u195
+   584  00FE86  2A05               	incf	??_lcd4Init& (0+255),f,c
+   585  00FE88                     u195:
+   586  00FE88  0E01               	movlw	1
+   587  00FE8A  1605               	andwf	??_lcd4Init,f,c
+   588  00FE8C  3A05               	swapf	??_lcd4Init,f,c
+   589  00FE8E  5082               	movf	3970,w,c	;volatile
+   590  00FE90  1805               	xorwf	??_lcd4Init,w,c
+   591  00FE92  0BEF               	andlw	-17
+   592  00FE94  1805               	xorwf	??_lcd4Init,w,c
+   593  00FE96  6E82               	movwf	3970,c	;volatile
+   594                           
+   595                           ;lcd.c: 122: PORTCbits.RC5 = (data>>6)& 0x01;
+   596  00FE98  C008  F005         	movff	lcd4Init@data,??_lcd4Init
+   597  00FE9C  0E06               	movlw	6
+   598  00FE9E  6E06               	movwf	(??_lcd4Init+1)& (0+255),c
+   599  00FEA0                     u205:
+   600  00FEA0  90D8               	bcf	status,0,c
+   601  00FEA2  3205               	rrcf	??_lcd4Init,f,c
+   602  00FEA4  2E06               	decfsz	(??_lcd4Init+1)& (0+255),f,c
+   603  00FEA6  D7FC               	goto	u205
+   604  00FEA8  0E01               	movlw	1
+   605  00FEAA  1605               	andwf	??_lcd4Init,f,c
+   606  00FEAC  3A05               	swapf	??_lcd4Init,f,c
+   607  00FEAE  4605               	rlncf	??_lcd4Init,f,c
+   608  00FEB0  5082               	movf	3970,w,c	;volatile
+   609  00FEB2  1805               	xorwf	??_lcd4Init,w,c
+   610  00FEB4  0BDF               	andlw	-33
+   611  00FEB6  1805               	xorwf	??_lcd4Init,w,c
+   612  00FEB8  6E82               	movwf	3970,c	;volatile
+   613                           
+   614                           ;lcd.c: 123: PORTCbits.RC6 = (data>>5)& 0x01;
+   615  00FEBA  C008  F005         	movff	lcd4Init@data,??_lcd4Init
+   616  00FEBE  0E05               	movlw	5
+   617  00FEC0  6E06               	movwf	(??_lcd4Init+1)& (0+255),c
+   618  00FEC2                     u215:
+   619  00FEC2  90D8               	bcf	status,0,c
+   620  00FEC4  3205               	rrcf	??_lcd4Init,f,c
+   621  00FEC6  2E06               	decfsz	(??_lcd4Init+1)& (0+255),f,c
+   622  00FEC8  D7FC               	goto	u215
+   623  00FECA  0E01               	movlw	1
+   624  00FECC  1605               	andwf	??_lcd4Init,f,c
+   625  00FECE  3A05               	swapf	??_lcd4Init,f,c
+   626  00FED0  4605               	rlncf	??_lcd4Init,f,c
+   627  00FED2  4605               	rlncf	??_lcd4Init,f,c
+   628  00FED4  5082               	movf	3970,w,c	;volatile
+   629  00FED6  1805               	xorwf	??_lcd4Init,w,c
+   630  00FED8  0BBF               	andlw	-65
+   631  00FEDA  1805               	xorwf	??_lcd4Init,w,c
+   632  00FEDC  6E82               	movwf	3970,c	;volatile
+   633                           
+   634                           ;lcd.c: 124: PORTCbits.RC7 = (data>>4)& 0x01;
+   635  00FEDE  C008  F005         	movff	lcd4Init@data,??_lcd4Init
+   636  00FEE2  3A05               	swapf	??_lcd4Init,f,c
+   637  00FEE4  0E0F               	movlw	15
+   638  00FEE6  1605               	andwf	??_lcd4Init,f,c
+   639  00FEE8  0E01               	movlw	1
+   640  00FEEA  1605               	andwf	??_lcd4Init,f,c
+   641  00FEEC  3205               	rrcf	??_lcd4Init,f,c
+   642  00FEEE  3205               	rrcf	??_lcd4Init,f,c
+   643  00FEF0  5082               	movf	3970,w,c	;volatile
+   644  00FEF2  1805               	xorwf	??_lcd4Init,w,c
+   645  00FEF4  0B7F               	andlw	-129
+   646  00FEF6  1805               	xorwf	??_lcd4Init,w,c
+   647  00FEF8  6E82               	movwf	3970,c	;volatile
+   648                           
+   649                           ;lcd.c: 126: PORTDbits.RD6 = 0;
+   650                           
+   651                           ;lcd.c: 125: _delay((unsigned long)((5)*(500000/4000000.0)));
+   652  00FEFA  9C83               	bcf	3971,6,c	;volatile
+   653                           
+   654                           ;lcd.c: 127: _delay((unsigned long)((25)*(500000/4000.0)));
+   655  00FEFC  0E05               	movlw	5
+   656  00FEFE  6E05               	movwf	??_lcd4Init& (0+255),c
+   657  00FF00  0E0D               	movlw	13
+   658  00FF02                     u307:
+   659  00FF02  2EE8               	decfsz	wreg,f,c
+   660  00FF04  D7FE               	goto	u307
+   661  00FF06  2E05               	decfsz	??_lcd4Init& (0+255),f,c
+   662  00FF08  D7FC               	goto	u307
+   663  00FF0A  D000               	nop2	
+   664                           
+   665                           ;lcd.c: 128: PORTDbits.RD6 = 1;
+   666  00FF0C  8C83               	bsf	3971,6,c	;volatile
+   667                           
+   668                           ;lcd.c: 130: PORTDbits.RD6 = 0;
+   669                           
+   670                           ;lcd.c: 129: _delay((unsigned long)((5)*(500000/4000000.0)));
+   671  00FF0E  9C83               	bcf	3971,6,c	;volatile
+   672                           
+   673                           ;lcd.c: 131: _delay((unsigned long)((25)*(500000/4000.0)));
+   674  00FF10  0E05               	movlw	5
+   675  00FF12  6E05               	movwf	??_lcd4Init& (0+255),c
+   676  00FF14  0E0D               	movlw	13
+   677  00FF16                     u317:
+   678  00FF16  2EE8               	decfsz	wreg,f,c
+   679  00FF18  D7FE               	goto	u317
+   680  00FF1A  2E05               	decfsz	??_lcd4Init& (0+255),f,c
+   681  00FF1C  D7FC               	goto	u317
+   682  00FF1E  D000               	nop2	
+   683                           
+   684                           ;lcd.c: 132: PORTDbits.RD6 = 1;
+   685  00FF20  8C83               	bsf	3971,6,c	;volatile
+   686                           
+   687                           ;lcd.c: 134: PORTDbits.RD6 = 0;
+   688                           
+   689                           ;lcd.c: 133: _delay((unsigned long)((5)*(500000/4000000.0)));
+   690  00FF22  9C83               	bcf	3971,6,c	;volatile
+   691                           
+   692                           ;lcd.c: 135: _delay((unsigned long)((25)*(500000/4000.0)));
+   693  00FF24  0E05               	movlw	5
+   694  00FF26  6E05               	movwf	??_lcd4Init& (0+255),c
+   695  00FF28  0E0D               	movlw	13
+   696  00FF2A                     u327:
+   697  00FF2A  2EE8               	decfsz	wreg,f,c
+   698  00FF2C  D7FE               	goto	u327
+   699  00FF2E  2E05               	decfsz	??_lcd4Init& (0+255),f,c
+   700  00FF30  D7FC               	goto	u327
+   701  00FF32  D000               	nop2	
+   702                           
+   703                           ;lcd.c: 136: PORTDbits.RD6 = 1;
+   704  00FF34  8C83               	bsf	3971,6,c	;volatile
+   705                           
+   706                           ;lcd.c: 137: data = 0x20;
+   707  00FF36  0E20               	movlw	32
+   708  00FF38  6E08               	movwf	lcd4Init@data,c
+   709                           
+   710                           ;lcd.c: 138: PORTCbits.RC4 = (data>>7)& 0x01;
+   711  00FF3A  6A05               	clrf	??_lcd4Init& (0+255),c
+   712  00FF3C  AE08               	btfss	lcd4Init@data,7,c
+   713  00FF3E  D001               	bra	u225
+   714  00FF40  2A05               	incf	??_lcd4Init& (0+255),f,c
+   715  00FF42                     u225:
+   716  00FF42  0E01               	movlw	1
+   717  00FF44  1605               	andwf	??_lcd4Init,f,c
+   718  00FF46  3A05               	swapf	??_lcd4Init,f,c
+   719  00FF48  5082               	movf	3970,w,c	;volatile
+   720  00FF4A  1805               	xorwf	??_lcd4Init,w,c
+   721  00FF4C  0BEF               	andlw	-17
+   722  00FF4E  1805               	xorwf	??_lcd4Init,w,c
+   723  00FF50  6E82               	movwf	3970,c	;volatile
+   724                           
+   725                           ;lcd.c: 139: PORTCbits.RC5 = (data>>6)& 0x01;
+   726  00FF52  C008  F005         	movff	lcd4Init@data,??_lcd4Init
+   727  00FF56  0E06               	movlw	6
+   728  00FF58  6E06               	movwf	(??_lcd4Init+1)& (0+255),c
+   729  00FF5A                     u235:
+   730  00FF5A  90D8               	bcf	status,0,c
+   731  00FF5C  3205               	rrcf	??_lcd4Init,f,c
+   732  00FF5E  2E06               	decfsz	(??_lcd4Init+1)& (0+255),f,c
+   733  00FF60  D7FC               	goto	u235
+   734  00FF62  0E01               	movlw	1
+   735  00FF64  1605               	andwf	??_lcd4Init,f,c
+   736  00FF66  3A05               	swapf	??_lcd4Init,f,c
+   737  00FF68  4605               	rlncf	??_lcd4Init,f,c
+   738  00FF6A  5082               	movf	3970,w,c	;volatile
+   739  00FF6C  1805               	xorwf	??_lcd4Init,w,c
+   740  00FF6E  0BDF               	andlw	-33
+   741  00FF70  1805               	xorwf	??_lcd4Init,w,c
+   742  00FF72  6E82               	movwf	3970,c	;volatile
+   743                           
+   744                           ;lcd.c: 140: PORTCbits.RC6 = (data>>5)& 0x01;
+   745  00FF74  C008  F005         	movff	lcd4Init@data,??_lcd4Init
+   746  00FF78  0E05               	movlw	5
+   747  00FF7A  6E06               	movwf	(??_lcd4Init+1)& (0+255),c
+   748  00FF7C                     u245:
+   749  00FF7C  90D8               	bcf	status,0,c
+   750  00FF7E  3205               	rrcf	??_lcd4Init,f,c
+   751  00FF80  2E06               	decfsz	(??_lcd4Init+1)& (0+255),f,c
+   752  00FF82  D7FC               	goto	u245
+   753  00FF84  0E01               	movlw	1
+   754  00FF86  1605               	andwf	??_lcd4Init,f,c
+   755  00FF88  3A05               	swapf	??_lcd4Init,f,c
+   756  00FF8A  4605               	rlncf	??_lcd4Init,f,c
+   757  00FF8C  4605               	rlncf	??_lcd4Init,f,c
+   758  00FF8E  5082               	movf	3970,w,c	;volatile
+   759  00FF90  1805               	xorwf	??_lcd4Init,w,c
+   760  00FF92  0BBF               	andlw	-65
+   761  00FF94  1805               	xorwf	??_lcd4Init,w,c
+   762  00FF96  6E82               	movwf	3970,c	;volatile
+   763                           
+   764                           ;lcd.c: 141: PORTCbits.RC7 = (data>>4)& 0x01;
+   765  00FF98  C008  F005         	movff	lcd4Init@data,??_lcd4Init
+   766  00FF9C  3A05               	swapf	??_lcd4Init,f,c
+   767  00FF9E  0E0F               	movlw	15
+   768  00FFA0  1605               	andwf	??_lcd4Init,f,c
+   769  00FFA2  0E01               	movlw	1
+   770  00FFA4  1605               	andwf	??_lcd4Init,f,c
+   771  00FFA6  3205               	rrcf	??_lcd4Init,f,c
+   772  00FFA8  3205               	rrcf	??_lcd4Init,f,c
+   773  00FFAA  5082               	movf	3970,w,c	;volatile
+   774  00FFAC  1805               	xorwf	??_lcd4Init,w,c
+   775  00FFAE  0B7F               	andlw	-129
+   776  00FFB0  1805               	xorwf	??_lcd4Init,w,c
+   777  00FFB2  6E82               	movwf	3970,c	;volatile
+   778                           
+   779                           ;lcd.c: 143: PORTDbits.RD6 = 0;
+   780                           
+   781                           ;lcd.c: 142: _delay((unsigned long)((5)*(500000/4000000.0)));
+   782  00FFB4  9C83               	bcf	3971,6,c	;volatile
+   783                           
+   784                           ;lcd.c: 146: _delay((unsigned long)((25)*(500000/4000.0)));
+   785  00FFB6  0E05               	movlw	5
+   786  00FFB8  6E05               	movwf	??_lcd4Init& (0+255),c
+   787  00FFBA  0E0D               	movlw	13
+   788  00FFBC                     u337:
+   789  00FFBC  2EE8               	decfsz	wreg,f,c
+   790  00FFBE  D7FE               	goto	u337
+   791  00FFC0  2E05               	decfsz	??_lcd4Init& (0+255),f,c
+   792  00FFC2  D7FC               	goto	u337
+   793  00FFC4  D000               	nop2	
+   794                           
+   795                           ;lcd.c: 147: lcd4SendCommand(0x28);
+   796  00FFC6  0E28               	movlw	40
+   797  00FFC8  EC31  F07E         	call	_lcd4SendCommand
+   798                           
+   799                           ;lcd.c: 149: lcd4WaitBusy();
+   800  00FFCC  ECEA  F07D         	call	_lcd4WaitBusy	;wreg free
+   801                           
+   802                           ;lcd.c: 150: lcd4SendCommand(0x08);
+   803  00FFD0  0E08               	movlw	8
+   804  00FFD2  EC31  F07E         	call	_lcd4SendCommand
+   805                           
+   806                           ;lcd.c: 152: lcd4WaitBusy();
+   807  00FFD6  ECEA  F07D         	call	_lcd4WaitBusy	;wreg free
+   808                           
+   809                           ;lcd.c: 153: lcd4SendCommand(0x0F);
+   810  00FFDA  0E0F               	movlw	15
+   811  00FFDC  EC31  F07E         	call	_lcd4SendCommand
+   812                           
+   813                           ;lcd.c: 155: lcd4WaitBusy();
+   814  00FFE0  ECEA  F07D         	call	_lcd4WaitBusy	;wreg free
+   815                           
+   816                           ;lcd.c: 156: lcd4SendCommand(0x06);
+   817  00FFE4  0E06               	movlw	6
+   818  00FFE6  EC31  F07E         	call	_lcd4SendCommand
+   819                           
+   820                           ;lcd.c: 158: lcd4WaitBusy();
+   821  00FFEA  ECEA  F07D         	call	_lcd4WaitBusy	;wreg free
+   822                           
+   823                           ;lcd.c: 159: lcd4SendCommand(0x01);
+   824  00FFEE  0E01               	movlw	1
+   825  00FFF0  EC31  F07E         	call	_lcd4SendCommand
+   826                           
+   827                           ;lcd.c: 161: lcd4WaitBusy();
+   828  00FFF4  ECEA  F07D         	call	_lcd4WaitBusy	;wreg free
+   829                           
+   830                           ;lcd.c: 162: lcd4SendCommand(0x02);
+   831  00FFF8  0E02               	movlw	2
+   832  00FFFA  EC31  F07E         	call	_lcd4SendCommand
+   833  00FFFE  0012               	return		;funcret
+   834  010000                     __end_of_lcd4Init:
+   835                           	opt stack 0
+   836                           prodl	equ	0xFF3
+   837                           wreg	equ	0xFE8
+   838                           status	equ	0xFD8
+   839                           
+   840 ;; *************** function _lcd4Clear *****************
+   841 ;; Defined at:
+   842 ;;		line 98 in file "lcd.c"
+   843 ;; Parameters:    Size  Location     Type
+   844 ;;		None
+   845 ;; Auto vars:     Size  Location     Type
+   846 ;;		None
+   847 ;; Return value:  Size  Location     Type
+   848 ;;                  2   20[None  ] int 
+   849 ;; Registers used:
+   850 ;;		wreg, status,2, status,0, cstack
+   851 ;; Tracked objects:
+   852 ;;		On entry : 0/0
+   853 ;;		On exit  : 0/0
+   854 ;;		Unchanged: 0/0
+   855 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   856 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   857 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   858 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   859 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   860 ;;Total ram usage:        0 bytes
+   861 ;; Hardware stack levels used:    1
+   862 ;; Hardware stack levels required when called:    1
+   863 ;; This function calls:
+   864 ;;		_lcd4SendCommand
+   865 ;;		_lcd4WaitBusy
+   866 ;; This function is called by:
+   867 ;;		_main
+   868 ;; This function uses a non-reentrant model
+   869 ;;
+   870                           
+   871                           	psect	text4
+   872  00FB9E                     __ptext4:
+   873                           	opt stack 0
+   874  00FB9E                     _lcd4Clear:
+   875                           	opt stack 29
+   876                           
+   877                           ;lcd.c: 100: lcd4WaitBusy();
+   878                           
+   879                           ;incstack = 0
+   880  00FB9E  ECEA  F07D         	call	_lcd4WaitBusy	;wreg free
+   881                           
+   882                           ;lcd.c: 101: lcd4SendCommand(0x01);
+   883  00FBA2  0E01               	movlw	1
+   884  00FBA4  EC31  F07E         	call	_lcd4SendCommand
+   885  00FBA8  0012               	return		;funcret
+   886  00FBAA                     __end_of_lcd4Clear:
+   887                           	opt stack 0
+   888                           prodl	equ	0xFF3
+   889                           wreg	equ	0xFE8
+   890                           status	equ	0xFD8
+   891                           
+   892 ;; *************** function _lcd4WaitBusy *****************
+   893 ;; Defined at:
+   894 ;;		line 69 in file "lcd.c"
+   895 ;; Parameters:    Size  Location     Type
+   896 ;;		None
+   897 ;; Auto vars:     Size  Location     Type
+   898 ;;  r               2    0[COMRAM] int 
+   899 ;; Return value:  Size  Location     Type
+   900 ;;                  1    wreg      void 
+   901 ;; Registers used:
+   902 ;;		wreg, status,2, status,0
+   903 ;; Tracked objects:
+   904 ;;		On entry : 0/0
+   905 ;;		On exit  : 0/0
+   906 ;;		Unchanged: 0/0
+   907 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   908 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   909 ;;      Locals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   910 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   911 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   912 ;;Total ram usage:        2 bytes
+   913 ;; Hardware stack levels used:    1
+   914 ;; This function calls:
+   915 ;;		Nothing
+   916 ;; This function is called by:
+   917 ;;		_lcd4Clear
+   918 ;;		_lcd4Init
+   919 ;;		_lcd4SendChar
+   920 ;;		_lcd4SetCursor
+   921 ;;		_lcd4Home
+   922 ;;		_lcd4MoveCursor
+   923 ;; This function uses a non-reentrant model
+   924 ;;
+   925                           
+   926                           	psect	text5
+   927  00FBD4                     __ptext5:
+   928                           	opt stack 0
+   929  00FBD4                     _lcd4WaitBusy:
+   930                           	opt stack 29
+   931                           
+   932                           ;lcd.c: 71: int r = 0;
+   933                           
+   934                           ;incstack = 0
+   935  00FBD4  0E00               	movlw	0
+   936  00FBD6  6E02               	movwf	lcd4WaitBusy@r+1,c
+   937  00FBD8  0E00               	movlw	0
+   938  00FBDA  6E01               	movwf	lcd4WaitBusy@r,c
+   939                           
+   940                           ;lcd.c: 72: PORTCbits.RC4 = 0;
+   941  00FBDC  9882               	bcf	3970,4,c	;volatile
+   942                           
+   943                           ;lcd.c: 73: TRISCbits.TRISC4 = 1;
+   944  00FBDE  8894               	bsf	3988,4,c	;volatile
+   945                           
+   946                           ;lcd.c: 74: PORTDbits.RD4 = 0;
+   947  00FBE0  9883               	bcf	3971,4,c	;volatile
+   948                           
+   949                           ;lcd.c: 75: PORTDbits.RD5 = 1;
+   950  00FBE2  8A83               	bsf	3971,5,c	;volatile
+   951                           
+   952                           ;lcd.c: 76: _delay((unsigned long)((1)*(500000/4000000.0)));
+   953                           ;lcd.c: 77: while(r == 0)
+   954  00FBE4  D00A               	goto	l721
+   955  00FBE6                     l50:
+   956                           
+   957                           ;lcd.c: 78: {
+   958                           ;lcd.c: 79: PORTDbits.RD6 = 1;
+   959  00FBE6  8C83               	bsf	3971,6,c	;volatile
+   960                           
+   961                           ;lcd.c: 80: _delay((unsigned long)((2)*(500000/4000000.0)));
+   962                           ;lcd.c: 81: PORTDbits.RD6 = 0;
+   963  00FBE8  9C83               	bcf	3971,6,c	;volatile
+   964                           
+   965                           ;lcd.c: 82: _delay((unsigned long)((2)*(500000/4000000.0)));
+   966                           ;lcd.c: 83: if(PORTCbits.RC4 == 0)
+   967  00FBEA  B882               	btfsc	3970,4,c	;volatile
+   968  00FBEC  D004               	goto	l713
+   969                           
+   970                           ;lcd.c: 84: {
+   971                           ;lcd.c: 85: r = 1;
+   972  00FBEE  0E00               	movlw	0
+   973  00FBF0  6E02               	movwf	lcd4WaitBusy@r+1,c
+   974  00FBF2  0E01               	movlw	1
+   975  00FBF4  6E01               	movwf	lcd4WaitBusy@r,c
+   976  00FBF6                     l713:
+   977                           
+   978                           ;lcd.c: 86: }
+   979                           ;lcd.c: 88: PORTDbits.RD6 = 1;
+   980  00FBF6  8C83               	bsf	3971,6,c	;volatile
+   981                           
+   982                           ;lcd.c: 90: PORTDbits.RD6 = 0;
+   983                           
+   984                           ;lcd.c: 89: _delay((unsigned long)((2)*(500000/4000000.0)));
+   985  00FBF8  9C83               	bcf	3971,6,c	;volatile
+   986  00FBFA                     l721:
+   987  00FBFA  5001               	movf	lcd4WaitBusy@r,w,c
+   988  00FBFC  1002               	iorwf	lcd4WaitBusy@r+1,w,c
+   989  00FBFE  B4D8               	btfsc	status,2,c
+   990  00FC00  D7F2               	goto	l50
+   991                           
+   992                           ;lcd.c: 92: }
+   993                           ;lcd.c: 94: TRISCbits.TRISC4 = 0;
+   994  00FC02  9894               	bcf	3988,4,c	;volatile
+   995  00FC04  0012               	return		;funcret
+   996  00FC06                     __end_of_lcd4WaitBusy:
+   997                           	opt stack 0
+   998                           prodl	equ	0xFF3
+   999                           wreg	equ	0xFE8
+  1000                           status	equ	0xFD8
+  1001                           
+  1002 ;; *************** function _lcd4SendCommand *****************
+  1003 ;; Defined at:
+  1004 ;;		line 21 in file "lcd.c"
+  1005 ;; Parameters:    Size  Location     Type
+  1006 ;;  data            1    wreg     unsigned char 
+  1007 ;; Auto vars:     Size  Location     Type
+  1008 ;;  data            1    2[COMRAM] unsigned char 
+  1009 ;; Return value:  Size  Location     Type
+  1010 ;;                  1    wreg      void 
+  1011 ;; Registers used:
+  1012 ;;		wreg, status,2, status,0
+  1013 ;; Tracked objects:
+  1014 ;;		On entry : 0/0
+  1015 ;;		On exit  : 0/0
+  1016 ;;		Unchanged: 0/0
+  1017 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1018 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1019 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1020 ;;      Temps:          2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1021 ;;      Totals:         3       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1022 ;;Total ram usage:        3 bytes
+  1023 ;; Hardware stack levels used:    1
+  1024 ;; This function calls:
+  1025 ;;		Nothing
+  1026 ;; This function is called by:
+  1027 ;;		_lcd4Clear
+  1028 ;;		_lcd4Init
+  1029 ;;		_lcd4SetCursor
+  1030 ;;		_lcd4Home
+  1031 ;;		_lcd4MoveCursor
+  1032 ;; This function uses a non-reentrant model
+  1033 ;;
+  1034                           
+  1035                           	psect	text6
+  1036  00FC62                     __ptext6:
+  1037                           	opt stack 0
+  1038  00FC62                     _lcd4SendCommand:
+  1039                           	opt stack 29
+  1040                           
+  1041                           ;incstack = 0
+  1042                           ;lcd4SendCommand@data stored from wreg
+  1043  00FC62  6E03               	movwf	lcd4SendCommand@data,c
+  1044                           
+  1045                           ;lcd.c: 25: PORTDbits.RD4 = 0;
+  1046  00FC64  9883               	bcf	3971,4,c	;volatile
+  1047                           
+  1048                           ;lcd.c: 26: PORTDbits.RD5 = 0;
+  1049  00FC66  9A83               	bcf	3971,5,c	;volatile
+  1050                           
+  1051                           ;lcd.c: 28: PORTCbits.RC4 = (data >> 7) & 0x1;
+  1052  00FC68  6A01               	clrf	??_lcd4SendCommand& (0+255),c
+  1053  00FC6A  AE03               	btfss	lcd4SendCommand@data,7,c
+  1054  00FC6C  D001               	bra	u15
+  1055  00FC6E  2A01               	incf	??_lcd4SendCommand& (0+255),f,c
+  1056  00FC70                     u15:
+  1057  00FC70  0E01               	movlw	1
+  1058  00FC72  1601               	andwf	??_lcd4SendCommand,f,c
+  1059  00FC74  3A01               	swapf	??_lcd4SendCommand,f,c
+  1060  00FC76  5082               	movf	3970,w,c	;volatile
+  1061  00FC78  1801               	xorwf	??_lcd4SendCommand,w,c
+  1062  00FC7A  0BEF               	andlw	-17
+  1063  00FC7C  1801               	xorwf	??_lcd4SendCommand,w,c
+  1064  00FC7E  6E82               	movwf	3970,c	;volatile
+  1065                           
+  1066                           ;lcd.c: 29: PORTCbits.RC5 = (data >> 6) & 0x1;
+  1067  00FC80  C003  F001         	movff	lcd4SendCommand@data,??_lcd4SendCommand
+  1068  00FC84  0E06               	movlw	6
+  1069  00FC86  6E02               	movwf	(??_lcd4SendCommand+1)& (0+255),c
+  1070  00FC88                     u25:
+  1071  00FC88  90D8               	bcf	status,0,c
+  1072  00FC8A  3201               	rrcf	??_lcd4SendCommand,f,c
+  1073  00FC8C  2E02               	decfsz	(??_lcd4SendCommand+1)& (0+255),f,c
+  1074  00FC8E  D7FC               	goto	u25
+  1075  00FC90  0E01               	movlw	1
+  1076  00FC92  1601               	andwf	??_lcd4SendCommand,f,c
+  1077  00FC94  3A01               	swapf	??_lcd4SendCommand,f,c
+  1078  00FC96  4601               	rlncf	??_lcd4SendCommand,f,c
+  1079  00FC98  5082               	movf	3970,w,c	;volatile
+  1080  00FC9A  1801               	xorwf	??_lcd4SendCommand,w,c
+  1081  00FC9C  0BDF               	andlw	-33
+  1082  00FC9E  1801               	xorwf	??_lcd4SendCommand,w,c
+  1083  00FCA0  6E82               	movwf	3970,c	;volatile
+  1084                           
+  1085                           ;lcd.c: 30: PORTCbits.RC6 = (data >> 5) & 0x1;
+  1086  00FCA2  C003  F001         	movff	lcd4SendCommand@data,??_lcd4SendCommand
+  1087  00FCA6  0E05               	movlw	5
+  1088  00FCA8  6E02               	movwf	(??_lcd4SendCommand+1)& (0+255),c
+  1089  00FCAA                     u35:
+  1090  00FCAA  90D8               	bcf	status,0,c
+  1091  00FCAC  3201               	rrcf	??_lcd4SendCommand,f,c
+  1092  00FCAE  2E02               	decfsz	(??_lcd4SendCommand+1)& (0+255),f,c
+  1093  00FCB0  D7FC               	goto	u35
+  1094  00FCB2  0E01               	movlw	1
+  1095  00FCB4  1601               	andwf	??_lcd4SendCommand,f,c
+  1096  00FCB6  3A01               	swapf	??_lcd4SendCommand,f,c
+  1097  00FCB8  4601               	rlncf	??_lcd4SendCommand,f,c
+  1098  00FCBA  4601               	rlncf	??_lcd4SendCommand,f,c
+  1099  00FCBC  5082               	movf	3970,w,c	;volatile
+  1100  00FCBE  1801               	xorwf	??_lcd4SendCommand,w,c
+  1101  00FCC0  0BBF               	andlw	-65
+  1102  00FCC2  1801               	xorwf	??_lcd4SendCommand,w,c
+  1103  00FCC4  6E82               	movwf	3970,c	;volatile
+  1104                           
+  1105                           ;lcd.c: 31: PORTCbits.RC7 = (data >> 4) & 0x1;
+  1106  00FCC6  C003  F001         	movff	lcd4SendCommand@data,??_lcd4SendCommand
+  1107  00FCCA  3A01               	swapf	??_lcd4SendCommand,f,c
+  1108  00FCCC  0E0F               	movlw	15
+  1109  00FCCE  1601               	andwf	??_lcd4SendCommand,f,c
+  1110  00FCD0  0E01               	movlw	1
+  1111  00FCD2  1601               	andwf	??_lcd4SendCommand,f,c
+  1112  00FCD4  3201               	rrcf	??_lcd4SendCommand,f,c
+  1113  00FCD6  3201               	rrcf	??_lcd4SendCommand,f,c
+  1114  00FCD8  5082               	movf	3970,w,c	;volatile
+  1115  00FCDA  1801               	xorwf	??_lcd4SendCommand,w,c
+  1116  00FCDC  0B7F               	andlw	-129
+  1117  00FCDE  1801               	xorwf	??_lcd4SendCommand,w,c
+  1118  00FCE0  6E82               	movwf	3970,c	;volatile
+  1119                           
+  1120                           ;lcd.c: 32: PORTDbits.RD6 = 1;
+  1121  00FCE2  8C83               	bsf	3971,6,c	;volatile
+  1122                           
+  1123                           ;lcd.c: 34: PORTDbits.RD6 = 0;
+  1124                           
+  1125                           ;lcd.c: 33: _delay((unsigned long)((5)*(500000/4000000.0)));
+  1126  00FCE4  9C83               	bcf	3971,6,c	;volatile
+  1127                           
+  1128                           ;lcd.c: 35: _delay((unsigned long)((5)*(500000/4000000.0)));
+  1129                           ;lcd.c: 39: PORTCbits.RC4 = (data >> 3) & 0x1;
+  1130  00FCE6  C003  F001         	movff	lcd4SendCommand@data,??_lcd4SendCommand
+  1131  00FCEA  90D8               	bcf	status,0,c
+  1132  00FCEC  3201               	rrcf	??_lcd4SendCommand,f,c
+  1133  00FCEE  90D8               	bcf	status,0,c
+  1134  00FCF0  3201               	rrcf	??_lcd4SendCommand,f,c
+  1135  00FCF2  90D8               	bcf	status,0,c
+  1136  00FCF4  3201               	rrcf	??_lcd4SendCommand,f,c
+  1137  00FCF6  0E01               	movlw	1
+  1138  00FCF8  1601               	andwf	??_lcd4SendCommand,f,c
+  1139  00FCFA  3A01               	swapf	??_lcd4SendCommand,f,c
+  1140  00FCFC  5082               	movf	3970,w,c	;volatile
+  1141  00FCFE  1801               	xorwf	??_lcd4SendCommand,w,c
+  1142  00FD00  0BEF               	andlw	-17
+  1143  00FD02  1801               	xorwf	??_lcd4SendCommand,w,c
+  1144  00FD04  6E82               	movwf	3970,c	;volatile
+  1145                           
+  1146                           ;lcd.c: 40: PORTCbits.RC5 = (data >> 2) & 0x1;
+  1147  00FD06  C003  F001         	movff	lcd4SendCommand@data,??_lcd4SendCommand
+  1148  00FD0A  90D8               	bcf	status,0,c
+  1149  00FD0C  3201               	rrcf	??_lcd4SendCommand,f,c
+  1150  00FD0E  90D8               	bcf	status,0,c
+  1151  00FD10  3201               	rrcf	??_lcd4SendCommand,f,c
+  1152  00FD12  0E01               	movlw	1
+  1153  00FD14  1601               	andwf	??_lcd4SendCommand,f,c
+  1154  00FD16  3A01               	swapf	??_lcd4SendCommand,f,c
+  1155  00FD18  4601               	rlncf	??_lcd4SendCommand,f,c
+  1156  00FD1A  5082               	movf	3970,w,c	;volatile
+  1157  00FD1C  1801               	xorwf	??_lcd4SendCommand,w,c
+  1158  00FD1E  0BDF               	andlw	-33
+  1159  00FD20  1801               	xorwf	??_lcd4SendCommand,w,c
+  1160  00FD22  6E82               	movwf	3970,c	;volatile
+  1161                           
+  1162                           ;lcd.c: 41: PORTCbits.RC6 = (data >> 1) & 0x1;
+  1163  00FD24  C003  F001         	movff	lcd4SendCommand@data,??_lcd4SendCommand
+  1164  00FD28  90D8               	bcf	status,0,c
+  1165  00FD2A  3201               	rrcf	??_lcd4SendCommand,f,c
+  1166  00FD2C  0E01               	movlw	1
+  1167  00FD2E  1601               	andwf	??_lcd4SendCommand,f,c
+  1168  00FD30  3A01               	swapf	??_lcd4SendCommand,f,c
+  1169  00FD32  4601               	rlncf	??_lcd4SendCommand,f,c
+  1170  00FD34  4601               	rlncf	??_lcd4SendCommand,f,c
+  1171  00FD36  5082               	movf	3970,w,c	;volatile
+  1172  00FD38  1801               	xorwf	??_lcd4SendCommand,w,c
+  1173  00FD3A  0BBF               	andlw	-65
+  1174  00FD3C  1801               	xorwf	??_lcd4SendCommand,w,c
+  1175  00FD3E  6E82               	movwf	3970,c	;volatile
+  1176                           
+  1177                           ;lcd.c: 42: PORTCbits.RC7 = (data) & 0x1;
+  1178  00FD40  C003  F001         	movff	lcd4SendCommand@data,??_lcd4SendCommand
+  1179  00FD44  0E01               	movlw	1
+  1180  00FD46  1601               	andwf	??_lcd4SendCommand,f,c
+  1181  00FD48  3201               	rrcf	??_lcd4SendCommand,f,c
+  1182  00FD4A  3201               	rrcf	??_lcd4SendCommand,f,c
+  1183  00FD4C  5082               	movf	3970,w,c	;volatile
+  1184  00FD4E  1801               	xorwf	??_lcd4SendCommand,w,c
+  1185  00FD50  0B7F               	andlw	-129
+  1186  00FD52  1801               	xorwf	??_lcd4SendCommand,w,c
+  1187  00FD54  6E82               	movwf	3970,c	;volatile
+  1188                           
+  1189                           ;lcd.c: 43: PORTDbits.RD6 = 1;
+  1190  00FD56  8C83               	bsf	3971,6,c	;volatile
+  1191                           
+  1192                           ;lcd.c: 45: PORTDbits.RD6 = 0;
+  1193                           
+  1194                           ;lcd.c: 44: _delay((unsigned long)((5)*(500000/4000000.0)));
+  1195  00FD58  9C83               	bcf	3971,6,c	;volatile
+  1196                           
+  1197                           ;lcd.c: 46: _delay((unsigned long)((5)*(500000/4000000.0)));
+  1198  00FD5A  0012               	return		;funcret
+  1199  00FD5C                     __end_of_lcd4SendCommand:
+  1200                           	opt stack 0
+  1201  0000                     prodl	equ	0xFF3
+  1202                           wreg	equ	0xFE8
+  1203                           status	equ	0xFD8
+  1204                           prodl	equ	0xFF3
+  1205                           wreg	equ	0xFE8
+  1206                           status	equ	0xFD8
+  1207                           
+  1208                           	psect	rparam
+  1209  0000                     prodl	equ	0xFF3
+  1210                           wreg	equ	0xFE8
+  1211                           status	equ	0xFD8
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         2
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95      9      11
+    BANK0           160      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+    BANK8           256      0       0
+    BANK9           256      0       0
+    BANK10          256      0       0
+    BANK11          256      0       0
+    BANK12          256      0       0
+    BANK13          256      0       0
+    BANK14          256      0       0
+    BANK15           56      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMRAM
+
+    _main->_lcd4Init
+    _lcd4SetCursor->_lcd4SendCommand
+    _lcd4SendChar->_lcd4WaitBusy
+    _lcd4Init->_lcd4SendCommand
+    _lcd4Clear->_lcd4SendCommand
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Critical Paths under _main in BANK8
+
+    None.
+
+Critical Paths under _main in BANK9
+
+    None.
+
+Critical Paths under _main in BANK10
+
+    None.
+
+Critical Paths under _main in BANK11
+
+    None.
+
+Critical Paths under _main in BANK12
+
+    None.
+
+Critical Paths under _main in BANK13
+
+    None.
+
+Critical Paths under _main in BANK14
+
+    None.
+
+Critical Paths under _main in BANK15
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 1     1      0     959
+                                              8 COMRAM     1     1      0
+                          _lcd4Clear
+                           _lcd4Init
+                       _lcd4SendChar
+                      _lcd4SetCursor
+ ---------------------------------------------------------------------------------
+ (1) _lcd4SetCursor                                        3     2      1     289
+                                              3 COMRAM     3     2      1
+                    _lcd4SendCommand
+                       _lcd4WaitBusy
+ ---------------------------------------------------------------------------------
+ (1) _lcd4SendChar                                         3     3      0     135
+                                              2 COMRAM     3     3      0
+                       _lcd4WaitBusy
+ ---------------------------------------------------------------------------------
+ (1) _lcd4Init                                             5     4      1     400
+                                              3 COMRAM     5     4      1
+                    _lcd4SendCommand
+                       _lcd4WaitBusy
+ ---------------------------------------------------------------------------------
+ (1) _lcd4Clear                                            0     0      0     135
+                    _lcd4SendCommand
+                       _lcd4WaitBusy
+ ---------------------------------------------------------------------------------
+ (2) _lcd4WaitBusy                                         2     2      0      15
+                                              0 COMRAM     2     2      0
+ ---------------------------------------------------------------------------------
+ (2) _lcd4SendCommand                                      3     3      0     120
+                                              0 COMRAM     3     3      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _lcd4Clear
+     _lcd4SendCommand
+     _lcd4WaitBusy
+   _lcd4Init
+     _lcd4SendCommand
+     _lcd4WaitBusy
+   _lcd4SendChar
+     _lcd4WaitBusy
+   _lcd4SetCursor
+     _lcd4SendCommand
+     _lcd4WaitBusy
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             F37      0       0      37        0.0%
+EEDATA             400      0       0       0        0.0%
+BITBANK14          100      0       0      33        0.0%
+BANK14             100      0       0      34        0.0%
+BITBANK13          100      0       0      31        0.0%
+BANK13             100      0       0      32        0.0%
+BITBANK12          100      0       0      29        0.0%
+BANK12             100      0       0      30        0.0%
+BITBANK11          100      0       0      27        0.0%
+BANK11             100      0       0      28        0.0%
+BITBANK10          100      0       0      25        0.0%
+BANK10             100      0       0      26        0.0%
+BITBANK9           100      0       0      23        0.0%
+BANK9              100      0       0      24        0.0%
+BITBANK8           100      0       0      21        0.0%
+BANK8              100      0       0      22        0.0%
+BITBANK7           100      0       0      19        0.0%
+BANK7              100      0       0      20        0.0%
+BITBANK6           100      0       0      17        0.0%
+BANK6              100      0       0      18        0.0%
+BITBANK5           100      0       0      15        0.0%
+BANK5              100      0       0      16        0.0%
+BITBANK4           100      0       0      13        0.0%
+BANK4              100      0       0      14        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0       0       5        0.0%
+BITCOMRAM           5F      0       0       0        0.0%
+COMRAM              5F      9       B       1       11.6%
+BITBANK15           38      0       0      35        0.0%
+BANK15              38      0       0      36        0.0%
+BITSFR_1             0      0       0      40        0.0%
+SFR_1                0      0       0      40        0.0%
+BITSFR               0      0       0      40        0.0%
+SFR                  0      0       0      40        0.0%
+STACK                0      0       0       2        0.0%
+NULL                 0      0       0       0        0.0%
+ABS                  0      0       B      12        0.0%
+DATA                 0      0       B       3        0.0%
+CODE                 0      0       0       0        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V1.36 build -262312587 
+Symbol Table                                                                                   Sat Apr 16 15:04:02 2016
+
+                        l25 FC60                          l50 FBE6                          u15 FC70  
+                        u25 FC88                          u35 FCAA                __CFG_CP0$OFF 000000  
+              __CFG_CP1$OFF 000000                __CFG_CP2$OFF 000000                __CFG_CP3$OFF 000000  
+               __CFG_LVP$ON 000000                         l713 FBF6                         l721 FBFA  
+              __CFG_CPB$OFF 000000                         u205 FEA0                         u125 FD6E  
+                       u215 FEC2                         u135 FD86                         u225 FF42  
+                       u145 FDA8                         u235 FF5A                         u307 FF02  
+                       u245 FF7C                         u317 FF16                         u327 FF2A  
+                       u337 FFBC                __CFG_CPD$OFF 000000                         u195 FE88  
+                       u277 FC28                         u287 FC42                         u297 FE6C  
+          ?_lcd4SendCommand 0001                         wreg 000FE8                        _main FC06  
+             __CFG_BORV$190 000000                        prodl 000FF3                        start 0002  
+             __CFG_IESO$OFF 000000                ___param_bank 000010                       ?_main 0001  
+                     _PORTC 000F82                       _PORTD 000F83                       _TRISC 000F94  
+                     _TRISD 000F95               __CFG_WRT0$OFF 000000               __CFG_WRT1$OFF 000000  
+             __CFG_WRT2$OFF 000000               __CFG_WRT3$OFF 000000              __CFG_EBTR0$OFF 000000  
+            __CFG_FCMEN$OFF 000000              __CFG_EBTR1$OFF 000000              __CFG_EBTR2$OFF 000000  
+            __CFG_EBTR3$OFF 000000               __CFG_WRTB$OFF 000000               __CFG_WRTC$OFF 000000  
+             __CFG_WRTD$OFF 000000              __CFG_EBTRB$OFF 000000          __CFG_MCLRE$EXTMCLR 000000  
+                     status 000FD8              __CFG_HFOFST$ON 000000             __initialization FB94  
+              __end_of_main FC62                      ??_main 0009               __activetblptr 000000  
+     __size_of_lcd4SendChar 0100                      _ANSELC 000F3A                      _ANSELD 000F3B  
+     __size_of_lcd4WaitBusy 0032              __CFG_WDTEN$OFF 000000               lcd4WaitBusy@r 0001  
+          __end_of_lcd4Init 0000              __CFG_PWRTEN$ON 000000              __CFG_XINST$OFF 000000  
+            __CFG_STVREN$ON 000000            lcd4SendChar@data 0005                _lcd4SendChar FD5C  
+              _lcd4WaitBusy FBD4                  __accesstop 0060     __end_of__initialization FB98  
+           __CFG_PBADEN$OFF 000000               ___rparam_used 000001          __size_of_lcd4Clear 000C  
+            __pcstackCOMRAM 0001             __CFG_PLLCFG$OFF 000000              lcd4SetCursor@x 0006  
+            lcd4SetCursor@y 0004          __CFG_CCP2MX$PORTB3 000000          __CFG_CCP3MX$PORTB5 000000  
+    __size_of_lcd4SetCursor 002A                   ?_lcd4Init 0004           __end_of_lcd4Clear FBAA  
+  __size_of_lcd4SendCommand 00FA                     __Hparam 0000                     __Lparam 0000  
+                   __pcinit FB94                     __ramtop 1000                     __ptext0 FC06  
+                   __ptext1 FBAA                     __ptext2 FD5C                     __ptext3 FE5C  
+                   __ptext4 FB9E                     __ptext5 FBD4                     __ptext6 FC62  
+                ??_lcd4Init 0005        end_of_initialization FB98               _lcd4SetCursor FBAA  
+                 _PORTCbits 000F82                   _PORTDbits 000F83                   _TRISCbits 000F94  
+            ?_lcd4SetCursor 0004           ??_lcd4SendCommand 0001                lcd4Init@data 0008  
+       start_initialization FB94                 __pbssCOMRAM 000A             ??_lcd4SetCursor 0005  
+         __size_of_lcd4Init 01A4                   _lcd4Clear FB9E  lcd4SetCursor@shiftDistance 0005  
+          __CFG_PRICLKEN$ON 000000                   lcd4Init@x 0007                   lcd4Init@y 0004  
+          _LCD4_disp_height 000A                  ?_lcd4Clear 0001            __CFG_WDTPS$32768 000000  
+             ?_lcd4SendChar 0001               ?_lcd4WaitBusy 0001             _lcd4SendCommand FC62  
+                  __Hrparam 0000                    __Lrparam 0000          __CFG_BOREN$SBORDIS 000000  
+         __CFG_P2BMX$PORTD2 000000              ??_lcd4SendChar 0003              ??_lcd4WaitBusy 0001  
+                  _lcd4Init FE5C                 ??_lcd4Clear 0004             _LCD4_disp_width 000B  
+             __size_of_main 005C     __end_of_lcd4SendCommand FD5C           __CFG_T3CMX$PORTC0 000000  
+     __end_of_lcd4SetCursor FBD4           __CFG_FOSC$ECMPIO6 000000         lcd4SendCommand@data 0003  
+      __end_of_lcd4SendChar FE5C        __end_of_lcd4WaitBusy FC06  
